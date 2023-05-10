@@ -1,0 +1,46 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.header {
+	background: #4f4f4f;
+    padding: 8px 0;
+}
+
+.time-money {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.time h3 {
+	color: #fff;
+	font-family: courier;
+	margin-left: 34px;
+    font-size: 22px;
+}
+
+.money-info {
+	display: flex;
+	justify-content: end;
+	align-items: center;
+}
+
+.icon-money {
+	display: flex;
+	margin-right: 32px;
+	color: #fff;
+	font-family: courier;
+    font-size: 22px;
+}
+
+.icon-money i {
+	margin-right: 8px;
+}
+
+.ingo {
+	margin-right: 20px;
+	color: #fff;
+	font-size: 22px;
+}
