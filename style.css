@@ -3,6 +3,11 @@
     padding: 0;
 }
 
+.container {
+	width: 1200px;
+	margin: 0 auto;
+}
+
 .header {
 	background: #4f4f4f;
     padding: 8px 0;
@@ -43,4 +48,32 @@
 	margin-right: 20px;
 	color: #fff;
 	font-size: 22px;
+}
+
+.fruits {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+
+.single-fruits {
+	width: 23%;
+	background: #dfdfdf;
+	height: 300px;
+	margin-top: 33px;
+	border: 5px solid #ccc;
+	text-align: center;
+	position: relative;
+}
+
+.fruit-img img {
+	max-width: 75%;
+	margin-top: 10px;
+}
+
+.fruit-info {
+	position: absolute;
+	top: 75%;
+	left: 25%;
 }
