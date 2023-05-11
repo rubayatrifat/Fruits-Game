@@ -65,6 +65,30 @@
 	border: 5px solid #ccc;
 	text-align: center;
 	position: relative;
+	cursor: pointer;
+}
+
+.single-fruits:hover {
+	background-color: #ccc;
+}
+
+.single-fruits.usable {
+	background-color: rgb(102, 156, 22);
+	border: 5px solid green;
+	color: #fff;
+}
+
+.single-fruits.usable:hover {
+	background-color: green;
+}
+
+.single-fruits.usable .power-prize h3{
+	display: none;
+}
+
+.single-fruits.usable .power-prize span {
+	display: inline-block;
+	margin-left: 25%;
 }
 
 .fruit-img img {
@@ -75,5 +99,27 @@
 .fruit-info {
 	position: absolute;
 	top: 75%;
-	left: 25%;
+	width: 100%;
+}
+
+.name {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.name h3 {
+	margin-left: 5px;
+}
+
+.power-prize {
+	display: flex;
+	justify-content: space-between;
+	width: 89%;
+	margin: 11px auto;
+	align-items: center;
+}
+
+.img-small {
+	width: 170px;
 }
