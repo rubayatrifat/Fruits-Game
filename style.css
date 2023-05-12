@@ -11,6 +11,9 @@
 .header {
 	background: #4f4f4f;
     padding: 8px 0;
+	position: sticky;
+	top: 0;
+	z-index: 999;
 }
 
 .time-money {
@@ -125,3 +128,45 @@
 	width: 170px;
 }
 
+.mian-info {
+	position: absolute;
+	background: #fff;
+	color: #000;
+	right: 11px;
+	width: 300px;
+	height: 370px;
+	text-align: center;
+	font-family: tahoma;
+	top: 97px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	padding: 20px;
+	visibility: hidden;
+	transition: .5s;
+	opacity: 0;
+}
+
+.fa-circle-info {
+	cursor: pointer;
+	transition: .4s;
+}
+
+.fa-circle-info:hover {
+	color: rgb(161, 66, 250);
+}
+
+.mian-info h3 {
+	font-size: 20px;
+	margin-bottom: 12px;
+}
+
+.mian-info p {
+	font-size: 14px;
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.ingo.come .mian-info {
+	top: 47px;
+	visibility: visible;
+	opacity: 1;
+} 
