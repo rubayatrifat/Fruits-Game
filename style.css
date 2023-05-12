@@ -66,6 +66,7 @@
 	text-align: center;
 	position: relative;
 	cursor: pointer;
+	font-family: tahoma;
 }
 
 .single-fruits:hover {
@@ -82,7 +83,7 @@
 	background-color: green;
 }
 
-.single-fruits.usable .power-prize h3{
+.single-fruits.usable .power-prize h4{
 	display: none;
 }
 
@@ -123,3 +124,4 @@
 .img-small {
 	width: 170px;
 }
+
