@@ -7,6 +7,14 @@ const balance = document.querySelector('.main-money');
 const fruitsPrize = Array.from(document.querySelectorAll('#prize span'));
 const prices = fruitsPrize.map((price) => Number(price.textContent));
 const changeIcon = document.querySelectorAll('.name i');
+const infoBtn = document.querySelector('.info-come');
+const mainInfo = document.querySelector('.ingo')
+
+
+// To come info
+infoBtn.addEventListener('click', () => {
+    mainInfo.classList.add('come')
+})
 
 // Load data from localStorage
 const storedBalance = localStorage.getItem('balance');
