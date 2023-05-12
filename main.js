@@ -13,8 +13,10 @@ const mainInfo = document.querySelector('.ingo')
 
 // To come info
 infoBtn.addEventListener('click', () => {
-    mainInfo.classList.add('come')
+    mainInfo.classList.toggle('come')
 })
+
+
 
 // Load data from localStorage
 const storedBalance = localStorage.getItem('balance');
