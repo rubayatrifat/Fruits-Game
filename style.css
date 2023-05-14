@@ -197,7 +197,7 @@ main {
 
 .game-face {
 	right: -100%;
-	width: 98.7vw;
+	width: 98vw;
 	position: absolute;
 	height: 100vh;
 	background: #ccc;
@@ -208,6 +208,7 @@ main {
 .game-face.back {
 	right: 0;
 	top: 42px;
+	width: 100vw;
 	overflow: hidden;
 	overflow-y: hidden;
 }

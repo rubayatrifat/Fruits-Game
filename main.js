@@ -12,6 +12,7 @@ const prices = fruitsPrize.map((price) => Number(price.textContent));
 const changeIcon = document.querySelectorAll('.name i');
 const infoBtn = document.querySelector('.info-come');
 const mainInfo = document.querySelector('.ingo')
+const body = document.querySelector('.body')
 
 
 // To come info
@@ -57,12 +58,24 @@ function goAnotherSide() {
     fruitsMenu.classList.add('go');
   }, 1000);
   gameInterFace.classList.add('back')
+  body.style.overflow = "hidden"
+  window.onscroll = function () { 
+    var doc = document.body, 
+    scrollPosition = doc.scrollTop,
+    pageSize = (doc.scrollHeight - doc.clientHeight),
+    percentageScrolled = Math.floor((scrollPosition / pageSize) * 100); 
+
+      if (percentageScrolled >= 50){ // if the percentage is >= 50, scroll to top
+        window.scrollTo(0,0); 
+      } 
+    }; 
 
 }
 
 function comeBackSide() {
   fruitsMenu.classList.remove('go')
   gameInterFace.classList.remove('back')
+  body.style.overflowY = "scroll"
 }
 
 lockedFruit.forEach((selectedItem) => {
