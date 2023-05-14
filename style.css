@@ -8,6 +8,25 @@
 	margin: 0 auto;
 }
 
+body {
+	overflow-x: hidden;
+}
+
+main {
+	display: flex;
+	overflow: hidden;
+}
+
+.first-slide {
+	position: absolute;
+	width: 100vw;
+	transition: .5s;
+}
+
+.first-slide.go {
+	right: 100%;
+}
+
 .header {
 	background: #4f4f4f;
     padding: 8px 0;
@@ -138,7 +157,7 @@
 	text-align: center;
 	font-family: tahoma;
 	top: 97px;
-	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 	padding: 20px;
 	visibility: hidden;
 	transition: .5s;
@@ -152,6 +171,11 @@
 
 .fa-circle-info:hover {
 	color: rgb(161, 66, 250);
+}
+
+.fa-times:hover {
+	color: rgb(161, 66, 250);
+	cursor: pointer;
 }
 
 .mian-info h3 {
@@ -170,3 +194,20 @@
 	visibility: visible;
 	opacity: 1;
 } 
+
+.game-face {
+	right: -100%;
+	width: 98.7vw;
+	position: absolute;
+	height: 100vh;
+	background: #ccc;
+	top: 0px;
+	transition: .5s;
+}
+
+.game-face.back {
+	right: 0;
+	top: 42px;
+	overflow: hidden;
+	overflow-y: hidden;
+}

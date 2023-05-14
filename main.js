@@ -1,3 +1,6 @@
+const gameInterFace = document.querySelector('.game-face')
+const fruitsMenu = document.querySelector('.first-slide')
+const comeBackBtn =  document.querySelector('.come-back')
 const useAbleFruit = document.querySelectorAll('.single-fruits.usable');
 const lockedFruit = document.querySelectorAll('.single-fruits.locked');
 const useAbleFruitAudio = document.getElementById('usable-fruit-click');
@@ -12,8 +15,12 @@ const mainInfo = document.querySelector('.ingo')
 
 
 // To come info
+
+
 infoBtn.addEventListener('click', () => {
     mainInfo.classList.toggle('come')
+    infoBtn.classList.toggle('fa-circle-info')
+    infoBtn.classList.toggle('fa-times')
 })
 
 
@@ -36,11 +43,27 @@ if (storedFruit) {
   icon.classList.add('fa-check');
 }
 
+comeBackBtn.addEventListener('click', comeBackSide)
+
 useAbleFruit.forEach((sound) => {
   sound.addEventListener('click', () => {
     useAbleFruitAudio.play();
+    goAnotherSide()
   });
 });
+
+function goAnotherSide() {
+  setTimeout(() => {
+    fruitsMenu.classList.add('go');
+  }, 1000);
+  gameInterFace.classList.add('back')
+
+}
+
+function comeBackSide() {
+  fruitsMenu.classList.remove('go')
+  gameInterFace.classList.remove('back')
+}
 
 lockedFruit.forEach((selectedItem) => {
   selectedItem.addEventListener('click', () => {
@@ -87,3 +110,35 @@ function isCanBuy(selectedFruit) {
     localStorage.setItem('fruit', selectedFruitIndex);
   }
 }
+
+
+
+
+
+
+// let timeoutDuration = 1000;
+// const minTimeoutDuration = 270;
+
+// function generateRandomNumber() {
+//   // Generate a random number between 0 and 100
+//   const randomNumber = Math.floor(Math.random() * 101);
+  
+//   // Output the random number to the console
+//   console.log(randomNumber);
+  
+//   // Decrease the timeout duration by 50ms, but not below the minimum value
+//   if (timeoutDuration > minTimeoutDuration) {
+//     timeoutDuration -= 50;
+//   }
+  
+//   // Wait for the updated timeout duration before generating the next number
+//   setTimeout(generateRandomNumber, timeoutDuration);
+// }
+
+// // Start generating random numbers
+// generateRandomNumber();
+
+
+
+
+
