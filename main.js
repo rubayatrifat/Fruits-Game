@@ -13,6 +13,7 @@ const changeIcon = document.querySelectorAll('.name i');
 const infoBtn = document.querySelector('.info-come');
 const mainInfo = document.querySelector('.ingo')
 const body = document.querySelector('.body')
+const timerElement = document.getElementById('timer');
 
 
 // To come info
@@ -50,6 +51,7 @@ useAbleFruit.forEach((sound) => {
   sound.addEventListener('click', () => {
     useAbleFruitAudio.play();
     goAnotherSide()
+    timeIsOn()
   });
 });
 
@@ -59,23 +61,38 @@ function goAnotherSide() {
   }, 1000);
   gameInterFace.classList.add('back')
   body.style.overflow = "hidden"
-  window.onscroll = function () { 
-    var doc = document.body, 
-    scrollPosition = doc.scrollTop,
-    pageSize = (doc.scrollHeight - doc.clientHeight),
-    percentageScrolled = Math.floor((scrollPosition / pageSize) * 100); 
 
-      if (percentageScrolled >= 50){ // if the percentage is >= 50, scroll to top
-        window.scrollTo(0,0); 
-      } 
-    }; 
+}
 
+function timeIsOn() {
+  let timeInSeconds = 15;
+    
+  // Function to update the timer
+  function updateTimer() {
+    // Add leading zero if the time is a single digit
+    const formattedTime = timeInSeconds < 10 ? `0${timeInSeconds}` : timeInSeconds;
+
+    // Update the timer element with the current time
+    timerElement.textContent = `Time:${formattedTime}`;
+
+    // Check if the time has reached 0
+    if (timeInSeconds === 0) {
+      clearInterval(timerInterval); // Stop the timer
+      alert("Time's up!");
+    } else {
+      timeInSeconds--; // Decrease the time by 1 second
+    }
+  }
+
+  // Update the timer every second
+  const timerInterval = setInterval(updateTimer, 1000);
 }
 
 function comeBackSide() {
   fruitsMenu.classList.remove('go')
   gameInterFace.classList.remove('back')
   body.style.overflowY = "scroll"
+  body.scrollTop
 }
 
 lockedFruit.forEach((selectedItem) => {
@@ -123,7 +140,6 @@ function isCanBuy(selectedFruit) {
     localStorage.setItem('fruit', selectedFruitIndex);
   }
 }
-
 
 
 
