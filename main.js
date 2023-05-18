@@ -1,6 +1,5 @@
 const gameInterFace = document.querySelector('.game-face')
 const fruitsMenu = document.querySelector('.first-slide')
-const comeBackBtn =  document.querySelector('.come-back')
 const useAbleFruit = document.querySelectorAll('.single-fruits.usable');
 const lockedFruit = document.querySelectorAll('.single-fruits.locked');
 const useAbleFruitAudio = document.getElementById('usable-fruit-click');
@@ -45,8 +44,6 @@ if (storedFruit) {
   icon.classList.add('fa-check');
 }
 
-comeBackBtn.addEventListener('click', comeBackSide)
-
 useAbleFruit.forEach((sound) => {
   sound.addEventListener('click', () => {
     useAbleFruitAudio.play();
@@ -65,20 +62,27 @@ function goAnotherSide() {
 }
 
 function timeIsOn() {
-  let timeInSeconds = 15;
+  let timeInSeconds = 5;
     
-  // Function to update the timer
   function updateTimer() {
-    // Add leading zero if the time is a single digit
     const formattedTime = timeInSeconds < 10 ? `0${timeInSeconds}` : timeInSeconds;
 
-    // Update the timer element with the current time
     timerElement.textContent = `Time:${formattedTime}`;
 
-    // Check if the time has reached 0
     if (timeInSeconds === 0) {
-      clearInterval(timerInterval); // Stop the timer
-      alert("Time's up!");
+      clearInterval(timerInterval);
+      Swal.fire({
+        icon: 'info',
+        title: 'Your Time is Over',
+        text: 'You earned 50 game Doller $. Press Back to go back',
+        confirmButtonText: 'Go Back'
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          comeBackSide()
+        }
+      })
+
     } else {
       timeInSeconds--; // Decrease the time by 1 second
     }
@@ -93,6 +97,7 @@ function comeBackSide() {
   gameInterFace.classList.remove('back')
   body.style.overflowY = "scroll"
   body.scrollTop
+  useAbleFruitAudio.play()
 }
 
 lockedFruit.forEach((selectedItem) => {
