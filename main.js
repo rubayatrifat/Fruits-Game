@@ -5,6 +5,7 @@ const lockedFruit = document.querySelectorAll('.single-fruits.locked');
 const useAbleFruitAudio = document.getElementById('usable-fruit-click');
 const lokedFruitAudio = document.getElementById('loked-fruit-click');
 const BuyFruitAudio = document.getElementById('buy-fruit-click');
+const timeUpAudio = document.getElementById('time-up');
 const balance = document.querySelector('.main-money');
 const fruitsPrize = Array.from(document.querySelectorAll('#prize span'));
 const prices = fruitsPrize.map((price) => Number(price.textContent));
@@ -45,12 +46,14 @@ if (storedFruit) {
 }
 
 useAbleFruit.forEach((sound) => {
-  sound.addEventListener('click', () => {
-    useAbleFruitAudio.play();
-    goAnotherSide()
-    timeIsOn()
-  });
+  sound.addEventListener('click', useAbleFruitClick);
 });
+
+function useAbleFruitClick() {
+  useAbleFruitAudio.play();
+  goAnotherSide();
+  timeIsOn();
+}
 
 function goAnotherSide() {
   setTimeout(() => {
@@ -71,6 +74,7 @@ function timeIsOn() {
 
     if (timeInSeconds === 0) {
       clearInterval(timerInterval);
+      timeUpAudio.play()
       Swal.fire({
         icon: 'info',
         title: 'Your Time is Over',
@@ -101,12 +105,11 @@ function comeBackSide() {
 }
 
 lockedFruit.forEach((selectedItem) => {
-  selectedItem.addEventListener('click', () => {
-    isCanBuy(selectedItem);
-  });
+  selectedItem.addEventListener('click', isCanBuy);
 });
 
-function isCanBuy(selectedFruit) {
+function isCanBuy(event) {
+  const selectedFruit = event.currentTarget;
   const selectedFruitIndex = Array.from(lockedFruit).indexOf(selectedFruit);
   const selectedFruitPrice = Number(prices[selectedFruitIndex]);
   const icon = selectedFruit.querySelector('.name i');
@@ -133,6 +136,7 @@ function isCanBuy(selectedFruit) {
     selectedFruit.classList.remove('locked');
     selectedFruit.classList.add('usable');
     selectedFruit.removeEventListener('click', isCanBuy);
+    selectedFruit.addEventListener('click', useAbleFruitClick);
     icon.classList.remove('fa-lock');
     icon.classList.add('fa-check');
 
@@ -145,8 +149,6 @@ function isCanBuy(selectedFruit) {
     localStorage.setItem('fruit', selectedFruitIndex);
   }
 }
-
-
 
 
 
