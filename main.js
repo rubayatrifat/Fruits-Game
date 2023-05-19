@@ -25,8 +25,6 @@ infoBtn.addEventListener('click', () => {
     infoBtn.classList.toggle('fa-times')
 })
 
-
-
 // Load data from localStorage
 const storedBalance = localStorage.getItem('balance');
 if (storedBalance) {
@@ -36,14 +34,40 @@ if (storedBalance) {
 const storedFruit = localStorage.getItem('fruit');
 if (storedFruit) {
   const selectedFruitIndex = Number(storedFruit);
-  const selectedFruit = lockedFruit[selectedFruitIndex];
-  const icon = selectedFruit.querySelector('.name i');
-  selectedFruit.classList.remove('locked');
-  selectedFruit.classList.add('usable');
-  selectedFruit.removeEventListener('click', isCanBuy);
-  icon.classList.remove('fa-lock');
-  icon.classList.add('fa-check');
+  unlockFruits(selectedFruitIndex);
+} else {
+  lockAllFruits();
 }
+
+// Function to unlock fruits up to the given index
+function unlockFruits(index) {
+  for (let i = 0; i <= index; i++) {
+    const selectedFruit = lockedFruit[i];
+    const icon = selectedFruit.querySelector('.name i');
+    selectedFruit.classList.remove('locked');
+    selectedFruit.classList.add('usable');
+    selectedFruit.removeEventListener('click', isCanBuy);
+    selectedFruit.addEventListener('click', useAbleFruitClick);
+    icon.classList.remove('fa-lock');
+    icon.classList.add('fa-check');
+  }
+}
+
+// Function to lock all fruits
+function lockAllFruits() {
+  lockedFruit.forEach((selectedFruit) => {
+    const icon = selectedFruit.querySelector('.name i');
+    selectedFruit.classList.add('locked');
+    selectedFruit.classList.remove('usable');
+    selectedFruit.removeEventListener('click', useAbleFruitClick);
+    selectedFruit.addEventListener('click', isCanBuy);
+    icon.classList.remove('fa-check');
+    icon.classList.add('fa-lock');
+  });
+}
+
+
+
 
 useAbleFruit.forEach((sound) => {
   sound.addEventListener('click', useAbleFruitClick);
