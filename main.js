@@ -15,6 +15,8 @@ const mainInfo = document.querySelector('.ingo')
 const body = document.querySelector('.body')
 const timerElement = document.getElementById('timer');
 
+let mainBalance = 700
+balance.textContent = mainBalance
 
 // To come info
 
@@ -143,7 +145,7 @@ function isCanBuy(event) {
     return;
   }
 
-  if (Number(balance.textContent) < selectedFruitPrice) {
+  if (Number(mainBalance) < selectedFruitPrice) {
     lokedFruitAudio.play();
     Swal.fire({
       icon: 'error',
@@ -165,8 +167,9 @@ function isCanBuy(event) {
     icon.classList.add('fa-check');
 
     // Update balance and store it in localStorage
-    const newBalance = Number(balance.textContent) - selectedFruitPrice;
-    balance.textContent = newBalance;
+    const newBalance = Number(mainBalance) - selectedFruitPrice;
+    mainBalance = newBalance;
+    balance.textContent = mainBalance
     localStorage.setItem('balance', newBalance);
 
     // Store selected fruit index in localStorage
