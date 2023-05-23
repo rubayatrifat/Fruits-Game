@@ -75,11 +75,20 @@ useAbleFruit.forEach((sound) => {
   sound.addEventListener('click', useAbleFruitClick);
 });
 
-function useAbleFruitClick() {
+function useAbleFruitClick(event) {
   useAbleFruitAudio.play();
+  const fruitImg = event.currentTarget.querySelector('.fruit-img img');
+  const fruitSrc = fruitImg.getAttribute('src');
+  const gameFace = document.querySelector('.game-face');
+  const fruitImage = document.createElement('img');
+  fruitImage.setAttribute('src', fruitSrc);
+  fruitImage.classList.add('fruit-image');
+  gameFace.innerHTML = '';
+  gameFace.appendChild(fruitImage);
   goAnotherSide();
   timeIsOn();
 }
+
 
 function goAnotherSide() {
   setTimeout(() => {
