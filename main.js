@@ -75,16 +75,37 @@ useAbleFruit.forEach((sound) => {
   sound.addEventListener('click', useAbleFruitClick);
 });
 
-function useAbleFruitClick(event) {
-  useAbleFruitAudio.play();
-  const fruitImg = event.currentTarget.querySelector('.fruit-img img');
+let timeoutDuration = 1000;
+const minTimeoutDuration = 270;
+let randomNumber
+
+function generateRandomNumberCreateFood() {
+  randomNumber = Math.floor(Math.random() * 11);
+
+  if (timeoutDuration > minTimeoutDuration) {
+    timeoutDuration -= 50;
+  }
+  
+  setTimeout(generateRandomNumberCreateFood, timeoutDuration);
+
+}
+
+generateRandomNumberCreateFood();
+
+function elementIntoDom() {
+  const fruitImg = document.querySelector('.fruit-img img');
   const fruitSrc = fruitImg.getAttribute('src');
   const gameFace = document.querySelector('.game-face');
-  const fruitImage = document.createElement('img');
-  fruitImage.setAttribute('src', fruitSrc);
-  fruitImage.classList.add('fruit-image');
-  gameFace.innerHTML = '';
-  gameFace.appendChild(fruitImage);
+  if(randomNumber === 7 || randomNumber === 8 || randomNumber > 2) {
+    const fruitImage = document.createElement('img');
+    fruitImage.setAttribute('src', fruitSrc);
+    gameFace.insertAdjacentHTML('afterbegin', fruitImage);
+  }
+}
+
+function useAbleFruitClick() {
+  useAbleFruitAudio.play();
+  elementIntoDom()
   goAnotherSide();
   timeIsOn();
 }
@@ -100,7 +121,7 @@ function goAnotherSide() {
 }
 
 function timeIsOn() {
-  let timeInSeconds = 5;
+  let timeInSeconds = 20;
     
   function updateTimer() {
     const formattedTime = timeInSeconds < 10 ? `0${timeInSeconds}` : timeInSeconds;
@@ -188,27 +209,6 @@ function isCanBuy(event) {
 
 
 
-// let timeoutDuration = 1000;
-// const minTimeoutDuration = 270;
-
-// function generateRandomNumber() {
-//   // Generate a random number between 0 and 100
-//   const randomNumber = Math.floor(Math.random() * 101);
-  
-//   // Output the random number to the console
-//   console.log(randomNumber);
-  
-//   // Decrease the timeout duration by 50ms, but not below the minimum value
-//   if (timeoutDuration > minTimeoutDuration) {
-//     timeoutDuration -= 50;
-//   }
-  
-//   // Wait for the updated timeout duration before generating the next number
-//   setTimeout(generateRandomNumber, timeoutDuration);
-// }
-
-// // Start generating random numbers
-// generateRandomNumber();
 
 
 
